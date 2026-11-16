@@ -52,7 +52,7 @@ Berikan jawaban ringkas, solutif, dan gunakan markdown.`
       : prompt
   }];
 
-  const model = imageData ? 'meta-llama/llama-4-scout-17b-16e-instruct' : 'llama-3.1-8b-instant';
+  const model = imageData ? 'qwen/qwen3.8-27b' : 'openai/gpt-oss-20b';
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), 25000);
   try {
