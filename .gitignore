@@ -2,3 +2,12 @@ config.js
 .env
 node_modules/
 .vercel/
+.expo/
+dist/
+web-build/
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+*.orig.*
