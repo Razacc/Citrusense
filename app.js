@@ -65,36 +65,14 @@ $('csv').onclick = () => {
   document.body.appendChild(a); a.click(); a.remove();
 };
 
-// ---- Navigasi & Geser Halaman ----
-const vp = $('pagesViewport');
-
-function syncNav(){
-  if (!vp) return;
-  const isChat = vp.scrollLeft >= vp.clientWidth * 0.45;
-  $('nDash').classList.toggle('on', !isChat);
-  $('nChat').classList.toggle('on', isChat);
-}
-if (vp) vp.addEventListener('scroll', syncNav, { passive: true });
-
+// ---- Navigasi ----
 function go(p){
-  if (!vp) {
-    $('pDash').classList.toggle('on', p === 'dash');
-    $('pChat').classList.toggle('on', p === 'chat');
-    $('nDash').classList.toggle('on', p === 'dash');
-    $('nChat').classList.toggle('on', p === 'chat');
-    return;
-  }
-  const w = vp.clientWidth;
-  if (p === 'dash') {
-    vp.scrollTo({ left: 0, behavior: 'smooth' });
-  } else {
-    vp.scrollTo({ left: w, behavior: 'smooth' });
-    setTimeout(() => { const inp = $('inp'); if (inp) inp.focus(); }, 350);
-  }
+  $('pDash').classList.toggle('on', p === 'dash'); $('pChat').classList.toggle('on', p === 'chat');
+  $('nDash').classList.toggle('on', p === 'dash'); $('nChat').classList.toggle('on', p === 'chat');
+  if (p === 'chat') setTimeout(() => $('inp').focus(), 100);
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
-$('nDash').onclick = () => go('dash');
-$('nChat').onclick = () => go('chat');
-$('askBtn').onclick = () => go('chat');
+$('nDash').onclick = () => go('dash'); $('nChat').onclick = () => go('chat'); $('askBtn').onclick = () => go('chat');
 
 // ---- Chat ----
 function addMsg(html, user = false, raw = false){
@@ -175,13 +153,7 @@ $('send').onclick = sendMsg;
 $('inp').addEventListener('keypress', e => { if (e.key === 'Enter') sendMsg(); });
 
 // ---- Splash ----
-function hideSplash(){
-  const s = $('splash');
-  if (!s) return;
-  s.classList.add('out');
-  s.style.pointerEvents = 'none';
-  setTimeout(() => { if (s && s.parentNode) s.remove(); }, 300);
-}
-setTimeout(hideSplash, 1200);
+function hideSplash(){ const s = $('splash'); if (!s) return; s.classList.add('out'); setTimeout(() => s.remove(), 600); }
+setTimeout(hideSplash, 5000);
 
 loadInitial();
