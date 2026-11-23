@@ -2,158 +2,75 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
-<title>CitruSense — Citrus Sensor &amp; Computation System</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>CitruSense — Citrus Sensor & Computation System</title>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
 <link rel="stylesheet" href="style.css">
-<link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#0C150E">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 </head>
 <body>
 <div id="splash">
-  <img src="assets/logo.svg" alt="CitruSense Logo" class="mark big">
+  <img src="assets/logo.svg" alt="" class="mark big">
   <div class="logo"><span class="c">Citru</span><span class="s">Sense</span></div>
   <div class="sub">Citrus Sensor &amp; Computation System</div>
   <div class="tag">Solusi Smart Farming Berbasis Sensor dan Komputasi untuk Budidaya Jeruk yang Lebih Presisi.</div>
   <div class="bar"><i></i></div>
-  <div class="tag load-txt">Memuat data sensor…</div>
+  <div class="tag">Memuat data sensor…</div>
   <div class="sup">Didukung oleh<br><b>Universitas Negeri Malang</b></div>
 </div>
 
-<!-- Viewport Swipeable Horizontal Antara Dashboard & CitruSense Bot -->
-<div class="pages-viewport" id="pagesViewport">
-  <!-- Halaman 1: Dashboard (Scrollable Vertikal Mandiri) -->
-  <div class="page" id="pDash">
-    <div class="page-content">
-      <!-- Header Mobile Rapi -->
-      <header class="head">
-        <div class="head-top">
-          <div class="brand">
-            <img src="assets/logo.svg" alt="Logo" class="mark">
-            <div class="brand-text">
-              <div class="logo"><span class="c">Citru</span><span class="s">Sense</span></div>
-              <p>Budidaya Jeruk Presisi</p>
-            </div>
-          </div>
-          <div class="pill" id="st"><i></i><span>Terhubung</span></div>
-        </div>
-        <div class="head-actions">
-          <button class="btn btn-outline" id="csv"><span>📄</span> Unduh CSV</button>
-          <button class="btn btn-primary" id="askBtn"><span>💬</span> Tanya AI</button>
-        </div>
-      </header>
-
-      <div class="section-title">
-        <h2>Ringkasan Sensor Real-Time</h2>
-        <span class="live-badge">● LIVE</span>
-      </div>
-
-      <!-- Grid Sensor 2 Kolom -->
-      <div class="grid">
-        <div class="sc sc-orange">
-          <div class="l"><span class="ico">🌡️</span><span class="t">Suhu Udara</span></div>
-          <div class="v"><b id="vSuhu">--</b><small>°C</small></div>
-        </div>
-        <div class="sc sc-blue">
-          <div class="l"><span class="ico">💧</span><span class="t">Kelembapan</span></div>
-          <div class="v"><b id="vHum">--</b><small>%</small></div>
-        </div>
-        <div class="sc sc-green">
-          <div class="l"><span class="ico">🌱</span><span class="t">Rata-rata Tanah</span></div>
-          <div class="v"><b id="vTanah">--</b><small>%</small></div>
-        </div>
-        <div class="sc sc-deepgreen">
-          <div class="l"><span class="ico">🧪</span><span class="t">Kadar TDS</span></div>
-          <div class="v"><b id="vTds">--</b><small>PPM</small></div>
-        </div>
-        <div class="sc sc-cyan">
-          <div class="l"><span class="ico">📏</span><span class="t">Tinggi Air</span></div>
-          <div class="v"><b id="vJarak">--</b><small>cm</small></div>
-        </div>
-        <div class="sc sc-amber">
-          <div class="l"><span class="ico">⚗️</span><span class="t">pH Air</span></div>
-          <div class="v"><b id="vPh">--</b></div>
-        </div>
-      </div>
-
-      <!-- Riwayat Sensor (Tabel Scroll Horizontal) -->
-      <section class="hist">
-        <div class="hh">
-          <div class="hh-title">
-            <h3>Riwayat Sensor</h3>
-            <span class="swipe-hint">Geser tabel ⟷</span>
-          </div>
-          <em>30 data terakhir</em>
-        </div>
-        <div class="ts">
-          <table>
-            <thead>
-              <tr>
-                <th>Waktu</th>
-                <th>Suhu °C</th>
-                <th>Kel. %</th>
-                <th>Tanah %</th>
-                <th>TDS</th>
-                <th>Air cm</th>
-                <th>pH</th>
-              </tr>
-            </thead>
-            <tbody id="tb"></tbody>
-          </table>
-          <div class="empty" id="emp">Belum ada data sensor.</div>
-        </div>
-      </section>
+<div class="wrap">
+  <div class="head">
+    <img src="assets/logo.svg" alt="" class="mark">
+    <div class="logo"><span class="c">Citru</span><span class="s">Sense</span></div>
+    <p>Citrus Sensor &amp; Computation System</p>
+    <div class="row">
+      <div class="pill" id="st"><i></i><span>Terhubung</span></div>
+      <button class="btn" id="csv">Unduh CSV</button>
+      <button class="btn g" id="askBtn">Tanya AI</button>
     </div>
   </div>
 
-  <!-- Halaman 2: Chat Bot (AI) -->
+  <div class="page on" id="pDash">
+    <div class="grid">
+      <div class="sc" style="--a:var(--o)"><div class="l"><span>🌡️</span>Suhu udara</div><div class="v"><b id="vSuhu">--</b><small>°C</small></div></div>
+      <div class="sc" style="--a:#1E9BD7"><div class="l"><span>💧</span>Kelembapan</div><div class="v"><b id="vHum">--</b><small>%</small></div></div>
+      <div class="sc" style="--a:var(--g)"><div class="l"><span>🌱</span>Rata-rata tanah</div><div class="v"><b id="vTanah">--</b><small>%</small></div></div>
+      <div class="sc" style="--a:var(--hd)"><div class="l"><span>🧪</span>Kadar TDS</div><div class="v"><b id="vTds">--</b><small>PPM</small></div></div>
+      <div class="sc" style="--a:#1E9BD7"><div class="l"><span>📏</span>Tinggi air</div><div class="v"><b id="vJarak">--</b><small>cm</small></div></div>
+      <div class="sc" style="--a:var(--o)"><div class="l"><span>⚗️</span>pH air</div><div class="v"><b id="vPh">--</b></div></div>
+    </div>
+    <div class="hist">
+      <div class="hh">Riwayat sensor<em>30 data terakhir</em></div>
+      <div class="ts"><table><thead><tr><th>Waktu</th><th>Suhu °C</th><th>Kel. %</th><th>Tanah %</th><th>TDS</th><th>Air cm</th><th>pH</th></tr></thead><tbody id="tb"></tbody></table>
+      <div class="empty" id="emp">Belum ada data sensor.</div></div>
+    </div>
+  </div>
+
   <div class="page" id="pChat">
-    <div class="page-content chat-page-content">
-      <div class="chat">
-        <div class="top">
-          <div class="top-info">
-            <b>CitruSense Bot</b>
-            <span>Asisten budidaya jeruk berbasis data sensor</span>
-          </div>
-          <span class="ai-badge">Groq AI</span>
-        </div>
-        <div id="box">
-          <div class="m bot">
-            <p>Halo! Saya <strong>CitruSense Bot</strong>. Data kebun Anda sudah terhubung. Anda juga bisa melampirkan file CSV atau foto tanaman untuk dianalisis. Ada yang ingin ditanyakan hari ini?</p>
-          </div>
-        </div>
-        <div class="foot">
-          <input type="file" id="fCsv" accept=".csv" class="hid">
-          <input type="file" id="fImg" accept="image/*" capture="environment" class="hid">
-          <button class="ic" id="bCsv" title="Lampirkan CSV" aria-label="Lampirkan CSV">📄</button>
-          <button class="ic" id="bImg" title="Foto tanaman" aria-label="Foto tanaman">📷</button>
-          <input type="text" id="inp" placeholder="Tanya kondisi jeruk atau saran…">
-          <button class="send" id="send" aria-label="Kirim">➤</button>
-        </div>
+    <div class="chat">
+      <div class="top"><b>CitruSense Bot</b><span>Asisten pertanian jeruk berbasis data sensor</span></div>
+      <div id="box"><div class="m bot"><p>Halo! Saya <strong>CitruSense Bot</strong>. Data kebun Anda sudah terhubung. Anda juga bisa melampirkan file CSV atau foto tanaman untuk dianalisis. Ada yang ingin ditanyakan hari ini?</p></div></div>
+      <div class="foot">
+        <input type="file" id="fCsv" accept=".csv" class="hid">
+        <input type="file" id="fImg" accept="image/*" capture="environment" class="hid">
+        <button class="ic" id="bCsv" title="Lampirkan CSV" aria-label="Lampirkan CSV">📄</button>
+        <button class="ic" id="bImg" title="Foto tanaman" aria-label="Foto tanaman">📷</button>
+        <input type="text" id="inp" placeholder="Tanya sesuatu…">
+        <button class="send" id="send" aria-label="Kirim">➤</button>
       </div>
     </div>
   </div>
 </div>
 
-<!-- Menu Bar Bawah Pas di Atas Navigasi HP -->
-<nav class="bottom-nav">
-  <button class="on" id="nDash">
-    <span class="nav-icon">▦</span>
-    <span class="nav-text">Dashboard</span>
-  </button>
-  <button id="nChat">
-    <span class="nav-icon">💬</span>
-    <span class="nav-text">CitruSense Bot</span>
-  </button>
+<nav>
+  <button class="on" id="nDash"><span>▦</span>Dashboard</button>
+  <button id="nChat"><span>💬</span>CitruSense Bot</button>
 </nav>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js"></script>
 <script src="config.js"></script>
 <script src="app.js"></script>
-<script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js');</script>
 </body>
 </html>
